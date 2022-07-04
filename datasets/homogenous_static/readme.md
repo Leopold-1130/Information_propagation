@@ -1,12 +1,15 @@
 # Datasets
-[OGB-products](https://ogb.stanford.edu/docs/nodeprop/#ogbn-products)  
-[OGB-proteins](https://ogb.stanford.edu/docs/nodeprop/#ogbn-proteins)   
-[OGB-arxiv](https://ogb.stanford.edu/docs/nodeprop/#ogbn-arxiv)     
-[OGB-papers](https://ogb.stanford.edu/docs/nodeprop/#ogbn-papers100M)   
+The graph, prediction task and the dataset splitting way can be seen in the links below.
+[ogbn-products](https://ogb.stanford.edu/docs/nodeprop/#ogbn-products)  
+[ogbn-proteins](https://ogb.stanford.edu/docs/nodeprop/#ogbn-proteins)   
+[ogbn-arxiv](https://ogb.stanford.edu/docs/nodeprop/#ogbn-arxiv)     
+[ogbn-papers100M](https://ogb.stanford.edu/docs/nodeprop/#ogbn-papers100M)   
 [Cora/CiteSeer/Pubmed](https://pytorch-geometric.readthedocs.io/en/latest/modules/datasets.html#torch_geometric.datasets.Planetoid)   
 
 # How to use
-replace d_name with  the dataset name (e.g., "ogbn-proteins").
+## OGB Datasets
+Replace d_name with  the dataset name (e.g., "ogbn-proteins").  
+The sample code is shown in this link https://github.com/snap-stanford/ogb/blob/master/examples/nodeproppred/products/gnn.py.
 
 ```
 from ogb.nodeproppred import PygNodePropPredDataset
