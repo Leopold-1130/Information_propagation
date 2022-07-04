@@ -20,3 +20,11 @@ split_idx = dataset.get_idx_split()
 train_idx, valid_idx, test_idx = split_idx["train"], split_idx["valid"], split_idx["test"]
 graph = dataset[0] # pyg graph object
 ```
+
+## Pytorch-geometric Dataset
+
+```
+from torch_geometric.datasets import Planetoid
+
+dataset = Planetoid(root='./', name='Cora') 
+```
