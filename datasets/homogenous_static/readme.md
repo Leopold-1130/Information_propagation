@@ -22,9 +22,9 @@ graph = dataset[0] # pyg graph object
 ```
 
 ## Pytorch-geometric Dataset
-
+The citation network datasets “Cora”, “CiteSeer” and “PubMed” from the “Revisiting Semi-Supervised Learning with Graph Embeddings” paper. Nodes represent documents and edges represent citation links. Training, validation and test splits are given by binary masks.
 ```
 from torch_geometric.datasets import Planetoid
-
+# *name* has three options, “Cora”, “CiteSeer” and “PubMed”.
 dataset = Planetoid(root='./', name='Cora') 
 ```
