@@ -16,8 +16,5 @@ bitcoin = IMDB(root='./BitcoinOTC')
 
 ```
 
-## SNAP Datasets
+## SNAP & Kaggle Datasets
 Download it through the corresponding link above.
-
-## Kaggle Datasets
-Upload Elliptic on the github.
