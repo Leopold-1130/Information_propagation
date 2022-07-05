@@ -14,3 +14,6 @@ from torch_geometric.datasets import BitcoinOTC
 bitcoin = IMDB(root='./BitcoinOTC') 
 
 ```
+
+## SNAP Datasets
+Download it through the corresponding link above.
