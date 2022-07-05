@@ -2,6 +2,7 @@
 The graph, prediction task and the dataset splitting way can be seen in the links below.  
 [ogbn-mag](https://ogb.stanford.edu/docs/nodeprop/#ogbn-mag)   
 [IMDB](https://pytorch-geometric.readthedocs.io/en/latest/modules/datasets.html#torch_geometric.datasets.IMDB)     
+[DBLP](https://paperswithcode.com/dataset/dblp)
 [LastFM](https://pytorch-geometric.readthedocs.io/en/latest/modules/datasets.html#torch_geometric.datasets.LastFM)
 
 # How to use
