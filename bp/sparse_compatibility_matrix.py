@@ -20,15 +20,15 @@ if __name__ == "__main__":
 
 	adj_mat_feats 	= torch.matmul(adj_mat, feats_1_hot)
 	H 				= torch.rand((num_classes, num_classes), requires_grad = True)
+	learning_rate 	= 1e-5
 
 	loss_fnct 		= nn.MSELoss(reduction = "mean")
 
-	optimizer       = torch.optim.Adam( H.parameters(), lr = 2e-7, betas = (0.9, 0.999), 
-                                        eps = 1e-08, weight_decay = 0, amsgrad = False)
-
-	for _ in range(100):
+	for _ in range(1000):
 		loss = loss_fnct(feats_1_hot, torch.matmul(adj_mat_feats, H))
-		optimizer.zero_grad()
 		loss.backward()
-		optimizer.step()
+
+		with torch.no_grad():
+			H 	-= learning_rate * H.grad
+
 		print(loss)
