@@ -50,3 +50,4 @@ if __name__ == "__main__":
 			break
 
 	print(min_loss, min_H)
+	torch.save(min_H, os.path.join(os.getcwd(), "matrices", "pubmed", "H.pt"))
