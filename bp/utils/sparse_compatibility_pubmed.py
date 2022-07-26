@@ -1,6 +1,9 @@
 """
 We implement the strategy employed by "Factorized Graph Representations forSemi-Supervised Learning from Sparse Data" (Kumar et al.)
 in order to obtain the compatibility matrix for belief propagation algorithms
+
+We will only use features from nodes marked as "train". 
+If a node is not marked as train, we will set its label value to 0.
 """
 
 import dgl
@@ -17,8 +20,9 @@ if __name__ == "__main__":
 
 	dataset 		= Planetoid(root='/tmp/pubmed', name='Pubmed')[0]
 	num_classes 	= dataset.y.max() +1
-	feats 			= dataset.y
+	feats 			= dataset.y * dataset.train_mask
 	feats_1_hot 	= nn.functional.one_hot(feats, num_classes = num_classes).type(torch.FloatTensor)
+	
 	adj_mat 		= to_scipy_sparse_matrix(dataset.edge_index)
 	adj_mat 		= dgl.from_scipy(adj_mat).adjacency_matrix()
 
