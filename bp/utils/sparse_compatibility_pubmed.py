@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
 	dataset 		= Planetoid(root='/tmp/pubmed', name='Pubmed')[0]
 	num_classes 	= dataset.y.max() +1
-	feats 			= dataset.y * dataset.train_mask
+	feats 			= dataset.y * (dataset.val_mask == False)
 	feats_1_hot 	= nn.functional.one_hot(feats, num_classes = num_classes).type(torch.FloatTensor)
 	
 	adj_mat 		= to_scipy_sparse_matrix(dataset.edge_index)
@@ -53,5 +53,7 @@ if __name__ == "__main__":
 		if loss_increasing_count >= EARLY_TERMINATE:
 			break
 
-	print(min_loss, min_H)
-	torch.save(min_H, os.path.join(os.getcwd(), "matrices", "pubmed", "H.pt"))
+	min_H_softmax = torch.softmax(min_H, dim = 0)
+	
+	print(min_loss, min_H_softmax)
+	torch.save(min_H_softmax, os.path.join(os.getcwd(), "matrices", "pubmed", "H.pt"))
