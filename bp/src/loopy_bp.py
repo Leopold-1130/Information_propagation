@@ -20,7 +20,7 @@ if __name__ == "__main__":
 															observed_node_class = observed_node_class
 														)
 
-	iters, converged = factor_g.lbp(normalize = True, max_iters = 100)
+	iters, converged = factor_g.lbp(normalize = True, max_iters = 15)
 	print(f"Iters: {iters}, Converged {converged}")
 
 	marginals 				= factor_g.rv_marginals()
@@ -33,3 +33,7 @@ if __name__ == "__main__":
 	loss_fnct 				= nn.CrossEntropyLoss(reduction = "mean")
 	loss = loss_fnct(predicted_class, unobserved_node_class)
 	print(loss)
+
+	(_, best_predicted_class) = torch.max(predicted_class, dim = 1)
+	accuracy 			= torch.sum(best_predicted_class == unobserved_node_class) / len(unobserved_node_class)
+	print(f"Accuracy {accuracy}")
