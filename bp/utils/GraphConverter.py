@@ -22,6 +22,26 @@ class GraphConverter(object):
 	    return graph
 
 	@classmethod
+	def networkx_to_factor_graph(self, 	nx_G, 
+										num_classes: int, 
+										edge_H: np.array,
+										observed_nodes: [int],
+										observed_node_class: [int],
+								):
+		factor_g 	= fg.Graph()
+
+		for each_node in nx_G.nodes():
+			factor_g.rv(str(each_node), num_classes)
+
+		for (node_A, node_B) in nx_G.edges():
+			factor_g.factor([str(node_A), str(node_B)], potential = edge_H)
+
+		for each_observed_node, each_observed_node_class in zip(observed_nodes, observed_node_class):
+			factor_g.factor([str(each_observed_node)], potential = np.array([1.0 if i == each_observed_node_class else 0.0 for i in range(num_classes)]))
+
+		return factor_g
+
+	@classmethod
 	def planetoid_to_factor_graph(self, plaintoid_g, 
 										num_classes: int, 
 										edge_H: np.array,
