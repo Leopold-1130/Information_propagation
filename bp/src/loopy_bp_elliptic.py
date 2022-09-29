@@ -7,12 +7,13 @@ import torch.nn as nn
 from utils.GraphConverter import GraphConverter
 
 if __name__ == "__main__":
-	nx_G 					= nx.read_gpickle("../datasets/homogenous_dynamic/elliptic_49.gpickle")
-	edge_H 					= torch.load(os.path.join(os.getcwd(), "matrices", "elliptic", "H_49.pt"))
+	nx_G 					= nx.read_gpickle("../datasets/homogenous_dynamic/elliptic_48.gpickle")
+	edge_H 					= torch.load(os.path.join(os.getcwd(), "matrices", "elliptic", "H_48.pt"))
 	edge_H 					= edge_H.detach().numpy()
 
 	all_nodes 				= set(nx_G.nodes())
 	all_nodes_class 		= [nx_G.nodes()[each_node]["cls"] for each_node in all_nodes]
+	validation_count 		= int(0.2 * len(all_nodes_class))
 	max_classes 			= max(all_nodes_class) +1
 
 	observed_nodes 			= []
@@ -24,7 +25,9 @@ if __name__ == "__main__":
 	for each_class in range(max_classes):
 		nodes_at_class 			= [x for x,y in nx_G.nodes(data = True) if y['cls'] == each_class]
 		
-		_observed_nodes 		= random.sample(nodes_at_class, int(0.9 * len(nodes_at_class)))
+		_observed_nodes 		= random.sample(nodes_at_class, 
+												max(len(nodes_at_class) - validation_count // max_classes, int(0.8 * len(nodes_at_class))))
+
 		_unobserved_nodes 		= list(set(nodes_at_class) - set(_observed_nodes))
 
 		observed_nodes 			+= _observed_nodes
